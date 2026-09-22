@@ -1,0 +1,8 @@
+*{box-sizing:border-box}body{margin:0;background:#f5f6f8;color:#20242a;font-family:system-ui,sans-serif}
+main{width:min(1150px,92%);margin:45px auto}h1{font-size:clamp(2rem,5vw,3.4rem);margin:.2rem 0}.tag{font-size:.8rem;font-weight:800;letter-spacing:.12em}
+section,.card{background:white;border:1px solid #dfe3e8;border-radius:14px;padding:20px;margin:22px 0}
+label{display:block;font-weight:700;margin:12px 0}textarea,select{display:block;width:100%;margin-top:7px;padding:11px;border:1px solid #c9cfd6;border-radius:8px;font:inherit}
+button{padding:11px 15px;border:0;border-radius:8px;background:#20242a;color:white;font-weight:700;cursor:pointer}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}
+.version{display:inline-block;margin:5px;padding:9px 11px;background:#eef1f4;border-radius:8px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:15px}
+.card{margin:0}.card pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f6f7f9;padding:10px;border-radius:8px;max-height:250px;overflow:auto}
+.metrics{font-size:.9rem;color:#5c636b}.history{padding:9px 0;border-bottom:1px solid #e5e8eb}dialog{width:min(700px,92%);border:0;border-radius:14px}dialog::backdrop{background:#0007}

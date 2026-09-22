@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Prompt Testing Playground</title>
+
+    <link
+        rel="stylesheet"
+        href="/static/styles.css"
+    >
+</head>
+
+<body>
+
+<main>
+
+    <!-- Header -->
+
+    <header>
+
+        <p class="tag">
+            PROMPT DEBUGGING & VERSIONING
+        </p>
+
+        <h1>
+            Prompt Testing Playground
+        </h1>
+
+        <p>
+            Compare versions using the same input,
+            save observations, and create improved
+            prompt versions.
+        </p>
+
+    </header>
+
+
+    <!-- Testing Section -->
+
+    <section>
+
+        <label for="prompt">
+            Prompt
+        </label>
+
+        <select id="prompt">
+            <option>
+                Loading prompts...
+            </option>
+        </select>
+
+
+        <label for="input">
+            Test Input
+        </label>
+
+        <textarea
+            id="input"
+            rows="7"
+            placeholder="Enter the text you want to test..."
+        >Artificial intelligence is increasingly used in healthcare to assist clinicians with documentation, image analysis, patient monitoring, and administrative workflows. These systems can improve efficiency, but they also require careful validation, privacy protection, and human oversight.</textarea>
+
+
+        <h3>
+            Versions (select 2–3)
+        </h3>
+
+        <div id="versions">
+
+            <p>
+                Loading prompt versions...
+            </p>
+
+        </div>
+
+
+        <div class="actions">
+
+            <button
+                id="compare"
+                type="button"
+            >
+                Run Comparison
+            </button>
+
+
+            <button
+                id="new"
+                type="button"
+            >
+                Create New Version
+            </button>
+
+        </div>
+
+
+        <p id="msg"></p>
+
+    </section>
+
+
+    <!-- Comparison Results -->
+
+    <h2>
+        Comparison
+    </h2>
+
+    <div
+        id="results"
+        class="grid"
+    ></div>
+
+
+    <!-- Test History -->
+
+    <section>
+
+        <h2>
+            Test History
+        </h2>
+
+        <div id="history">
+
+            <p>
+                No test runs yet.
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- Create New Version Dialog -->
+
+<dialog id="dialog">
+
+    <form id="form">
+
+        <h2>
+            Create New Prompt Version
+        </h2>
+
+
+        <label for="template">
+            Prompt Template
+        </label>
+
+        <textarea
+            id="template"
+            rows="12"
+            required
+        ></textarea>
+
+
+        <p>
+            <small>
+                Use <code>{input}</code>
+                where the test input should be inserted.
+            </small>
+        </p>
+
+
+        <label for="notes">
+            Change Notes
+        </label>
+
+        <textarea
+            id="notes"
+            rows="4"
+            placeholder="Describe what you changed and why..."
+        ></textarea>
+
+
+        <div class="actions">
+
+            <button
+                id="cancel"
+                type="button"
+            >
+                Cancel
+            </button>
+
+
+            <button
+                type="submit"
+            >
+                Save Version
+            </button>
+
+        </div>
+
+    </form>
+
+</dialog>
+
+
+<!-- JavaScript -->
+
+<script src="/static/app.js?v=2"></script>
+
+</body>
+
+</html>

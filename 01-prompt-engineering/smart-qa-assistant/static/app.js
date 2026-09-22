@@ -1,0 +1,8 @@
+const $ = (id) => document.getElementById(id);
+async function loadOptions(endpoint, selectId){const data=await fetch(endpoint).then(r=>r.json());$(selectId).innerHTML=data.map(x=>`<option value="${x.id}">${x.label}</option>`).join('')}
+function payload(){return {question:$('question').value.trim(),role:$('role').value,style:$('style').value,use_few_shot:$('fewShot').checked}}
+async function post(url){const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload())});const d=await r.json();if(!r.ok)throw new Error(d.detail||'Request failed');return d}
+$('ask').onclick=async()=>{try{$('status').textContent='Generating answer...';const d=await post('/api/ask');$('comparison').classList.add('hidden');$('singleResult').classList.remove('hidden');$('prompt').textContent=d.generated_prompt;$('mode').textContent=`Mode: ${d.mode} · Model: ${d.model}`;$('answer').textContent=d.answer;$('status').textContent=''}catch(e){$('status').textContent=e.message}}
+$('compare').onclick=async()=>{try{$('status').textContent='Comparing prompt patterns...';const d=await post('/api/compare');$('singleResult').classList.add('hidden');$('comparison').classList.remove('hidden');$('comparisonGrid').innerHTML=d.results.map(x=>`<article class="card"><h3>${x.pattern}</h3><h4>Prompt</h4><pre>${escapeHtml(x.generated_prompt)}</pre><h4>Response</h4><div class="answer">${escapeHtml(x.answer)}</div></article>`).join('');$('status').textContent=''}catch(e){$('status').textContent=e.message}}
+function escapeHtml(s){return s.replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
+Promise.all([loadOptions('/api/roles','role'),loadOptions('/api/styles','style')]);

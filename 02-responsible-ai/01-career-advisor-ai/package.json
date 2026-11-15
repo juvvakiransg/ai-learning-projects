@@ -1,0 +1,19 @@
+{
+  "name": "career-advisor-ai",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Offline-first responsible AI career advisor with optional OpenAI Responses API integration",
+  "engines": {
+    "node": ">=22.10.0"
+  },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning --experimental-strip-types src/index.ts",
+    "test": "node --disable-warning=ExperimentalWarning --experimental-strip-types --test tests/*.test.mjs",
+    "test:coverage": "node --disable-warning=ExperimentalWarning --experimental-strip-types --experimental-test-coverage --test tests/*.test.mjs",
+    "api": "node --disable-warning=ExperimentalWarning --experimental-strip-types src/server.ts",
+    "web:install": "npm install --prefix web",
+    "web:dev": "npm run dev --prefix web",
+    "web:build": "npm run build --prefix web"
+  }
+}

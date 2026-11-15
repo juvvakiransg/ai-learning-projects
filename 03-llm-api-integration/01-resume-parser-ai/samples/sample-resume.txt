@@ -1,0 +1,7 @@
+Alex Morgan
+Email: alex@example.com
+Phone: +1 555 123 4567
+Senior Software Engineer with 5 years of experience.
+Skills: Swift, TypeScript, React, AWS, Python.
+Experience: Software Engineer at Example Technologies, 2021-Present.
+Education: BSc Computer Science.

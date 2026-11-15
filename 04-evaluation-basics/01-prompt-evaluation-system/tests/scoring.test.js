@@ -1,0 +1,15 @@
+import test from 'node:test'; import assert from 'node:assert/strict';
+import {normalize,exactMatch,tokenF1,keywordCoverage,scoreRow,summarize} from '../src/scoring.js';
+test('normalization',()=>assert.equal(normalize(' Hello,  WORLD! '),'hello world'));
+test('exact match normalized',()=>assert.equal(exactMatch('Paris!','paris'),1));
+test('exact mismatch',()=>assert.equal(exactMatch('Paris','London'),0));
+test('f1 identical',()=>assert.equal(tokenF1('a b','a b'),1));
+test('f1 partial',()=>assert.equal(tokenF1('red blue','red green'),.5));
+test('f1 disjoint',()=>assert.equal(tokenF1('red','blue'),0));
+test('f1 empty',()=>assert.equal(tokenF1('',''),1));
+test('f1 repeated tokens',()=>assert.equal(tokenF1('a a','a'),2/3));
+test('keyword phrase coverage',()=>assert.equal(keywordCoverage(['new york','city'],'New York City'),1));
+test('keyword missing',()=>assert.equal(keywordCoverage(['cat','dog'],'cat'),.5));
+test('keyword empty',()=>assert.equal(keywordCoverage([],''),1));
+test('scoring threshold',()=>assert.equal(scoreRow({id:'1',question:'q',expectedOutput:'yes',keywords:['yes']},'yes').passed,true));
+test('summary empty',()=>assert.equal(summarize([]).total,0));

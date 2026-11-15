@@ -1,0 +1,89 @@
+[
+  {
+    "id": "Q001",
+    "question": "What is the capital of France?",
+    "expectedOutput": "Paris",
+    "keywords": [
+      "Paris"
+    ]
+  },
+  {
+    "id": "Q002",
+    "question": "What does API stand for?",
+    "expectedOutput": "Application Programming Interface",
+    "keywords": [
+      "Application Programming Interface"
+    ]
+  },
+  {
+    "id": "Q003",
+    "question": "What is machine learning?",
+    "expectedOutput": "Computers learn patterns from data",
+    "keywords": [
+      "patterns",
+      "data"
+    ]
+  },
+  {
+    "id": "Q004",
+    "question": "What is JSON?",
+    "expectedOutput": "JavaScript Object Notation",
+    "keywords": [
+      "JavaScript",
+      "Object",
+      "Notation"
+    ]
+  },
+  {
+    "id": "Q005",
+    "question": "What is HTTP?",
+    "expectedOutput": "Hypertext Transfer Protocol",
+    "keywords": [
+      "Hypertext Transfer Protocol"
+    ]
+  },
+  {
+    "id": "Q006",
+    "question": "What is a database index?",
+    "expectedOutput": "A structure that speeds up data retrieval",
+    "keywords": [
+      "data",
+      "retrieval"
+    ]
+  },
+  {
+    "id": "Q007",
+    "question": "What is a REST API?",
+    "expectedOutput": "An API following representational state transfer principles",
+    "keywords": [
+      "API",
+      "state"
+    ]
+  },
+  {
+    "id": "Q008",
+    "question": "What is version control?",
+    "expectedOutput": "Tracking changes to files over time",
+    "keywords": [
+      "changes",
+      "files"
+    ]
+  },
+  {
+    "id": "Q009",
+    "question": "What does CPU stand for?",
+    "expectedOutput": "Central Processing Unit",
+    "keywords": [
+      "Central Processing Unit"
+    ]
+  },
+  {
+    "id": "Q010",
+    "question": "What is unit testing?",
+    "expectedOutput": "Testing individual units of software",
+    "keywords": [
+      "individual",
+      "software"
+    ]
+  }
+]

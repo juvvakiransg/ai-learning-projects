@@ -10,7 +10,7 @@ A complete reference-based prompt evaluation application with a dependency-free 
 
 - Upload JSON datasets containing `id`, `question`, `expectedOutput`, optional `keywords`, and optional `actualOutput`.
 - Run three response modes: **mock fixtures**, **provided responses**, or **OpenAI API**.
-- Compute normalized exact-match accuracy, token-level F1, keyword phrase coverage, and composite pass/fail using a configurable threshold.
+- Compute normalized exact-match accuracy, token-level F1, keyword phrase coverage, and composite pass/fail using a configurable threshold, with a conservative contradiction guard.
 - Inspect question-level results and export reports as JSON or CSV.
 - Run the backend and automated tests without installing npm packages.
 
@@ -75,7 +75,8 @@ curl -X POST http://127.0.0.1:3004/api/evaluate \
 - **Exact match:** 1 if punctuation/case/whitespace-normalized strings match; otherwise 0.
 - **Token F1:** multiset token overlap; `2 * overlap / (expected token count + actual token count)`.
 - **Keyword coverage:** proportion of required keyword phrases present in the normalized response; returns 1 if no keywords are specified.
-- **Composite:** unweighted mean of the three metrics. A row passes when its composite is at least the configured threshold.
+- **Composite:** unweighted mean of the three metrics. A row passes when its composite meets the threshold **and** the contradiction guard does not flag the answer.
+- **Contradiction guard:** detects common explicit negation, rejection, and uncertainty around the reference answer. For example, `It is not Paris, it is Lyon.` fails even though the keyword `Paris` is present. The JSON report includes `contradictionDetected` and `gradingReason`; the summary includes `contradictionsDetected`.
 - **Accuracy:** average exact match across the dataset.
 
 **Important:** Mock mode deliberately returns each expected answer, so it normally scores 100%. This is a *pipeline fixture*, not evidence that an LLM is accurate. Token overlap and keyword checks do not measure factual correctness or semantic equivalence. Reference answers should be reviewed for ambiguity and multiple valid phrasings.
@@ -100,3 +101,9 @@ Do not upload confidential prompts or personal information to a third-party API 
 **Objective:** Evaluate model answers against expected outputs using exact match, token F1, keyword coverage, configurable thresholds, and reproducible datasets.
 
 **Validation:** Run the tests in your own environment and document the output. Frontend requires npm installation and should not be marked verified until it runs successfully.
+
+## Reviewer feedback addressed (2026-11)
+
+The original implementation used lexical metrics (exact match, token F1, keyword coverage). The keyword `Paris` could be counted in a contradictory answer such as `It is not Paris, it is Lyon.`. The revised implementation preserves the metrics for diagnostic purposes but blocks a passing grade when a **recognizable explicit contradiction or uncertainty** is present. Regression tests cover these cases and ensure a valid `Paris` answer still passes.
+
+**Scope:** This is a lightweight, dependency-free heuristic for an educational POC, **not** a semantic or factual correctness evaluator. It cannot reliably identify every paraphrase, subtle contradiction, multilingual negation, or factually wrong answer that contains the right keyword. For production-grade grading, add a structured semantic/LLM judge with independent validation and human review for uncertain or high-stakes cases.

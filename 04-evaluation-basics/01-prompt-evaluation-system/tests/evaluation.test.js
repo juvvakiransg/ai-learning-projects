@@ -11,3 +11,10 @@ test('provided mode scores mismatches',async()=>{const r=await evaluate({dataset
 test('provided mode requires response',async()=>await assert.rejects(()=>evaluate({dataset:[row],mode:'provided'})));
 test('invalid threshold rejected',async()=>await assert.rejects(()=>evaluate({dataset:[row],threshold:2})));
 test('invalid mode rejected',async()=>await assert.rejects(()=>evaluate({dataset:[row],mode:'other'})));
+
+test('provided mode reports negation failure', async () => {
+  const result = await evaluate({mode:'provided', threshold:0, dataset:[{id:'capital',question:'Capital of France?',expectedOutput:'Paris',keywords:['Paris'],actualOutput:'It is not Paris, it is Lyon.'}]});
+  assert.equal(result.summary.failed, 1);
+  assert.equal(result.summary.contradictionsDetected, 1);
+  assert.equal(result.results[0].passed, false);
+});
